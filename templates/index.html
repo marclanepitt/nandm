@@ -1,0 +1,192 @@
+{% load static %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{%  bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Naomi and Marc</title>
+
+
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+
+    <link href="{% static "css/grayscale.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" style="background-color: #1b6d85; opacity: .8;"  role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="light">Naomi</span> and Marc <span class="com">.com</span>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="/"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/timeline">Timeline</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/gallery">Photos</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Log In</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/15541122_1175056415864073_7802411058570350589_n.jpg?oh=414aafc7228ae877c5f5c18eaa319ff7&oe=58DA14C3">
+                        <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14702220_1109301929106189_1459557458447610627_n.jpg?oh=6a63e3301179390d09a44c32ebbe071c&oe=58ECEAE8">
+                        <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14716089_1102729489763433_6757859095804838454_n.jpg?oh=5cd1fdb561e4a4fef6d1739b78523946&oe=58D91602">
+                        <img class="mySlides" src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/13886878_1047631755273207_8599910286942117474_n.jpg?oh=38bc858ca5a38431446f359f43cfcb08&oe=591DCEA3>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/11822802_867252873311097_6137684881653610382_n.jpg?oh=4856fb662bf9993e774523dc9d10b775&oe=5921303F>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/12369070_916481795054871_5182514365139995714_n.jpg?oh=1c0aa45d0dedac3eb777285812a36ecb&oe=5922FEFC>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/11811527_860530403983344_3639674045295646215_n.jpg?oh=66020dc3784a8f61ca006a3b2bd5d927&oe=58DC1CBC>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10407455_860530510650000_775341507697446453_n.jpg?oh=0e904d25459a37628ce0b03742e24d73&oe=59170CC9>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/10422059_847882401914811_3685947286565775262_n.jpg?oh=5412fb432cce99e23818cd12f9e30a3d&oe=58DD456A>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14732381_1109302315772817_8135646349401085808_n.jpg?oh=3b856e8dcf2fe3477480cd3b7caf19b6&oe=58D7F861>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14670696_1109301802439535_6433885880375098150_n.jpg?oh=5817f0499f9b65c05eabd24bb2321ab6&oe=5915A3AA>
+                        <img class="mySlides"
+                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14040051_1054932657876450_4377473424685905211_n.jpg?oh=0fb995f80f160070af586d5045de524a&oe=58E79B0E>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{#    <!-- About Section -->#}
+{#    <section id="about" class="container content-section text-center">#}
+{#        <div class="row">#}
+{#            <div class="col-lg-8 col-lg-offset-2">#}
+{#                <h2>About Grayscale</h2>#}
+{#                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>#}
+{#                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>#}
+{#                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{#    <!-- Download Section -->#}
+{#    <section id="download" class="content-section text-center">#}
+{#        <div class="download-section">#}
+{#            <div class="container">#}
+{#                <div class="col-lg-8 col-lg-offset-2">#}
+{#                    <h2>Download Grayscale</h2>#}
+{#                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>#}
+{#                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{#    <!-- Contact Section -->#}
+{#    <section id="contact" class="container content-section text-center">#}
+{#        <div class="row">#}
+{#            <div class="col-lg-8 col-lg-offset-2">#}
+{#                <h2>Contact Start Bootstrap</h2>#}
+{#                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>#}
+{#                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>#}
+{#                </p>#}
+{#                <ul class="list-inline banner-social-buttons">#}
+{#                    <li>#}
+{#                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{#    <!-- Map Section -->#}
+{#    <div id="map"></div>#}
+
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="{% static "js/grayscale.min.js" %}"></script>
+<script>
+    var slideIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {
+            slideIndex = 1
+        }
+        x[slideIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+{% extends 'site_base.html' %}
+{% load static %}
+
+<html lang="en">
+{% block head %}
+    <link href="{% static "css/gallery.css" %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+{% endblock head %}
+
+{% block title %} Photo Gallery {% endblock title%}
+
+{% block content %}
+
+<div class="gallery">
+
+
+    <div class="modal fade" id="addEvent" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal"></button>
+                    <h4 class="modal-title" style="text-align: center;">Add Event to Timeline</h4>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+
+                        <div class="fieldWrapper">
+                            <label style="color: black">Picture URL</label>
+                            {{ form.url }}
+                        </div>
+                        <input type="submit" value="Submit"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% for Photo in pictures %}
+    <img id="image"  src="{{ Photo.url }}"/>
+
+
+{% endfor %}
+</div>
+    <button id="add_photo" class="btn btn-lg btn-info" data-toggle="modal"
+            data-target="#addEvent">Add Photo
+    </button>
+{% endblock %}
+
+
+
+
+</html>

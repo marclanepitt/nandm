@@ -1,0 +1,185 @@
+
+{% extends 'site_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+<link href="{% static "css/timeline.css" %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+
+{% block title %}
+Timeline
+{% endblock %}
+
+{% block content %}
+<body>
+<div style="padding-top: 90px;" class="container">
+<a style="padding-bottom: 10px; color: black;">My boo</a>
+    <div style="text-align: center;">
+        <button style="font-size: 9px; color: white; border: solid 4px white; background-color: red;" class="btn btn-default"
+                data-toggle="modal"
+                data-target="#addEvent">Add Event</button>
+    </div>
+
+        <div class="modal fade" id="addEvent" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal"></button>
+                        <h4 class="modal-title" style="text-align: center;">Add Event to Timeline</h4>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            <div class="fieldWrapper">
+
+                                <label style="color: black;">Title</label>
+                                {{ form.title }}
+                            </div>
+                            <div class="fieldWrapper">
+
+                                <label style="color: black">Description</label>
+                                {{ form.description }}
+                            </div>
+                            <div class="fieldWrapper">
+
+                                <label style="color: black">Picture URL</label>
+                                {{ form.pic }}
+                            </div>
+                            <div class="fieldWrapper">
+                                <label style="color: black;" >Side</label>
+                                {{ form.side }}
+                            </div>}
+                            <div class="fieldWrapper">
+                                <label style="color: black;">Date</label>
+                                {{ form.event_date }}
+                            </div>
+                            }
+                            <input type="submit" value="Submit"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <ul class="timeline">
+
+        {% for event in events %}
+
+            {% if event.side == False %}
+                <li>
+                    <div class="timeline-badge" style="background-color: red;"><i style="padding-top: 12px; padding-right: 2px; color: white" class="glyphicon glyphicon-heart"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">{{ event.title }}</h4>
+                            <p>
+                                <small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{ event.event_date }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                    data-target="#myModal{{ event.id }}">View Event
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal{{ event.id }}" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal"></button>
+                                            <h4 style="text-align: center;" class="modal-title">{{ event.title }}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img style="max-height: 320px; max-width: 320px;" class="img-responsive" src="{{ event.pic }}">
+                                            <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            {% else %}
+                <li class="timeline-inverted">
+                    <div class="timeline-badge" style="background-color: red;"><i style="padding-top: 12px; padding-right: 2px; color: white;" class="glyphicon glyphicon-heart"></i></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">{{ event.title }}</h4>
+                            <p>
+                                <small class="text-muted"><i
+                                        class="glyphicon glyphicon-time"></i> {{ event.event_date }}
+                                </small>
+                            </p>
+                        </div>
+                        <div class="timeline-body">
+
+                            <div class="container">
+                                <!-- Trigger the modal with a button -->
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                        data-target="#myModal{{ event.id }}">View Event
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal{{ event.id}}" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal"></button>
+                                                <h4 class="modal-title" style="text-align: center;">{{ event.title }}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img style="max-height: 320px; max-width: 320px;" class="img-responsive" src="{{ event.pic }}">
+                                                <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        {% endif %}
+        {% endfor %}
+            </ul>
+        </div>
+
+
+
+</body>
+
+{% endblock content %}

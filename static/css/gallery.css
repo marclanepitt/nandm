@@ -1,0 +1,17 @@
+#image {
+ max-width: 300px;
+    max-height: 300px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.gallery {
+    padding-top: 100px;
+    text-align: center;
+}
+#add_photo {
+    position: fixed;
+    top:92%;
+    margin-left: 88%;
+}
