@@ -1,5 +1,7 @@
 {% load static %}
 {% load bootstrap3 %}
+{% load account %}
+{% load i18n %}
 
 
 <head>
@@ -40,6 +42,66 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <form class="form-inline" action="{% url 'account_login' %}" method="post">
+                    {% csrf_token %}
+                    <label class="sr-only" for="inlineFormInput">Username</label>
+                    <input type="hidden" name="next" value="{{ request.get_full_path }}"
+                           class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
+                           placeholder=";)"/>
+
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon">@</div>
+                        <input id="id_login" name="login" placeholder="Username or e-mail" type="text" required
+                               class="form-control"
+                        >
+                    </div>
+                    <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <input id="id_password" name="password" placeholder="Password" type="password" required
+                               class="form-control"
+                        />
+                    </div>
+
+
+                    {#                            <div class="form-check mb-2 mr-sm-2 mb-sm-0">#}
+                    {#                                <label class="form-check-label">#}
+                    {#                                    <input style="color: dodgerblue" class="form-check-input" d="id_remember" name="remember" type="checkbox"/> Remember me#}
+                    {#                                </label>#}
+                    {#                            </div>#}
+
+                    <button type="submit" class="btn btn-success">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="logoutModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}
+                    <button style="width: 100%;margin-left: 13%" class="btn btn-lg btn-danger" type="submit">{% trans 'Sign Out' %}</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
 
 <!-- Navigation -->
 <nav class="navbar navbar-custom navbar-fixed-top" style="background-color: #1b6d85; opacity: .8;" role="navigation">
@@ -67,21 +129,32 @@
                 <li>
                     <a class="page-scroll" href="/gallery">Photos</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Log In</a>
-                </li>
+
+                {% if user.is_authenticated %}
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" date-targer="#logoutModal" href="#logoutModal">
+                            Welcome, {{ user }} <span class="glyphicon glyphicon-user"></span> </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="page-scroll" data-toggle="modal" date-targer="#loginModal" href="#loginModal">Log
+                            In</a>
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+
+
 </nav>
 {% block content %}
 
 {% endblock %}
 
 </body>
-
 </html>
 
 

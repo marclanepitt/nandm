@@ -1,6 +1,8 @@
-#image {
- max-width: 300px;
+
+
+#gallery_photo {
     max-height: 300px;
+    max-width: 300px;
     padding-bottom: 15px;
     padding-left: 5px;
     padding-right: 5px;
@@ -21,9 +23,7 @@
     font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#button {
-    margin-left: 120px;
-}
+
 .modal-title {
     color: #2e6da4;
 }

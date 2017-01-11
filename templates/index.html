@@ -2,6 +2,8 @@
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {%  bootstrap_javascript %}
+{% load account %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,13 +69,21 @@
                     </li>
 
                     <li>
-                        <a class="page-scroll" href="#contact">Log In</a>
-                    </li>
-                    <li>
                         <button class="btn btn-success" data-toggle="modal"
-                                data-target="#myModal{{ event.id }}" style="margin-top: 8px;">Memory of the Day
+                                data-target="#myModal" style="margin-top: 8px;">Random Memory Generator
                         </button>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li>
+                        <a class="page-scroll" data-toggle="modal" date-targer="#logoutModal" href="#logoutModal">
+                        Welcome, {{ user }} <span class="glyphicon glyphicon-user"></span> </a>
+                        </li>
+                            {% else %}
+                        <li>
+                            <a class="page-scroll" data-toggle="modal" date-targer="#loginModal" href="#loginModal">Log
+                                In</a>
+                        </li>
+                    {% endif %}
 
                 </ul>
             </div>
@@ -96,8 +106,6 @@
                         <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14716089_1102729489763433_6757859095804838454_n.jpg?oh=5cd1fdb561e4a4fef6d1739b78523946&oe=58D91602">
                         <img class="mySlides" src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/13886878_1047631755273207_8599910286942117474_n.jpg?oh=38bc858ca5a38431446f359f43cfcb08&oe=591DCEA3>
                         <img class="mySlides"
-                             src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/11822802_867252873311097_6137684881653610382_n.jpg?oh=4856fb662bf9993e774523dc9d10b775&oe=5921303F>
-                        <img class="mySlides"
                              src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/12369070_916481795054871_5182514365139995714_n.jpg?oh=1c0aa45d0dedac3eb777285812a36ecb&oe=5922FEFC>
                         <img class="mySlides"
                              src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/11811527_860530403983344_3639674045295646215_n.jpg?oh=66020dc3784a8f61ca006a3b2bd5d927&oe=58DC1CBC>
@@ -116,7 +124,8 @@
             </div>
         </div>
 
-        <div class="modal fade" id="myModal{{ event.id }}" role="dialog">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -124,14 +133,14 @@
                     <div class="modal-header">
                         <button type="button" class="close"
                                 data-dismiss="modal"></button>
-                        <h4 style="text-align: center;" class="modal-title">{{ event.title }}</h4>
+                        <h4 class="modal-title" style="text-align: center; color: black">{{ events.0.title }}</h4>
                     </div>
                     <div class="modal-body">
-                        <img style="max-height: 320px; max-width: 320px;" class="img-responsive" src="{{ event.pic }}">
-                        <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
+                        <img style="display:block; margin:auto; max-height: 320px; max-width: 320px;" class="img-responsive" src="{{ events.0.pic }}">
+                        <p style=" color: dodgerblue;text-align: center; padding-top: 10px;">{{ events.0.description }}</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Close
                         </button>
                     </div>
@@ -139,6 +148,68 @@
 
             </div>
         </div>
+        <div class="modal fade" id="loginModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <form class="form-inline" action="{% url 'account_login' %}" method="post">
+                            {% csrf_token %}
+                            <label class="sr-only" for="inlineFormInput">Username</label>
+                            <input type="hidden" name="next" value="{{ request.get_full_path }}" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
+                                   placeholder=";)"/>
+
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon">@</div>
+                                <input id="id_login" name="login" placeholder="Username or e-mail" type="text" required
+                                       class="form-control"
+                                >
+                            </div>
+                            <label class="sr-only" for="inlineFormInputGroup">Password</label>
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input id="id_password" name="password" placeholder="Password" type="password" required class="form-control"
+                                       />
+                            </div>
+
+
+{#                            <div class="form-check mb-2 mr-sm-2 mb-sm-0">#}
+{#                                <label class="form-check-label">#}
+{#                                    <input style="color: dodgerblue" class="form-check-input" d="id_remember" name="remember" type="checkbox"/> Remember me#}
+{#                                </label>#}
+{#                            </div>#}
+
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="logoutModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'account_logout' %}">
+                            {% csrf_token %}
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}"
+                                       value="{{ redirect_field_value }}"/>
+                            {% endif %}
+                            <button style="width: 100%; " class="btn btn-lg btn-danger" type="submit">{% trans 'Sign Out' %}</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </header>
 
 {#    <!-- About Section -->#}
@@ -222,6 +293,8 @@
         x[slideIndex - 1].style.display = "block";
         setTimeout(carousel, 2000); // Change image every 2 seconds
     }
+
+
 </script>
 
 </body>
