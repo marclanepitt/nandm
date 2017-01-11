@@ -19,6 +19,7 @@ from views import homeview
 from timeline.views import timelineview
 from gallery.views import GalleryView
 from django.conf.urls import include
+from gallery import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

@@ -28,22 +28,18 @@
                 <div class="modal-header">
                     <button type="button" class="close"
                             data-dismiss="modal"></button>
-                    <h4 class="modal-title" style="text-align: center;">Add Event to Timeline</h4>
+                    <h4 class="modal-title" style="text-align: center;">Add Photo to Gallery</h4>
                 </div>
                 <div class="modal-body" style="text-align: center;">
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{ form.non_field_errors }}
-
-                        <div class="fieldWrapper">
-                            <label style="color: black">Picture URL</label>
-                            {{ form.url }}
+                    <form method="POST" class="photo-form">{% csrf_token %}
+                        {{ form.as_p }}
+                        <div id="button">
+                        <button type="submit" class="save btn btn-info btn-lg">Save</button>
                         </div>
-                        <input type="submit" value="Submit"/>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
                         Close
                     </button>
                 </div>
@@ -57,9 +53,10 @@
 
 {% endfor %}
 </div>
-    <button id="add_photo" class="btn btn-lg btn-info" data-toggle="modal"
-            data-target="#addEvent">Add Photo
-    </button>
+
+        <button id="add_photo" class="btn btn-lg btn-info" data-toggle="modal"
+                data-target="#addEvent">Add Photo
+        </button>
 {% endblock %}
 
 

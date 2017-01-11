@@ -1,22 +1,22 @@
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.utils import timezone
 from models import Photo
 from forms import GalleryForm
-from django.template import RequestContext
+
+
 
 
 def GalleryView(request):
-
-    if request.method == 'POST':
+    if request.method == "POST":
         form = GalleryForm(request.POST)
-
         if form.is_valid():
-            return HttpResponseRedirect('/done/')
-
+            photo = form.save(commit=False)
+            photo.date_published = timezone.now()
+            photo.save()
+            return redirect('gallery.html', pk=photo.pk)
     else:
         form = GalleryForm()
-
-        context = RequestContext(request)
         piclist = Photo.objects.order_by('-date_published')
-        context_dict = {'pictures': piclist, 'form' :form}
-        return render_to_response('gallery.html', context_dict, context)
+        return render(request, 'gallery.html', {'form': form,'pictures':piclist})
+
+

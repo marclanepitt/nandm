@@ -15,3 +15,19 @@
     top:92%;
     margin-left: 88%;
 }
+.modal-body {
+    color: black;
+    margin-right: 120px;
+    font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#button {
+    margin-left: 120px;
+}
+.modal-title {
+    color: #2e6da4;
+}
+
+
+
+

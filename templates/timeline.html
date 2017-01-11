@@ -37,38 +37,15 @@ Timeline
                         <h4 class="modal-title" style="text-align: center;">Add Event to Timeline</h4>
                     </div>
                     <div class="modal-body" style="text-align: center;">
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            {{ form.non_field_errors }}
-                            <div class="fieldWrapper">
-
-                                <label style="color: black;">Title</label>
-                                {{ form.title }}
+                        <form method="POST" class="photo-form">{% csrf_token %}
+                            {{ form.as_p }}
+                            <div id="button">
+                                <button type="submit" class="save btn btn-info btn-lg">Save</button>
                             </div>
-                            <div class="fieldWrapper">
-
-                                <label style="color: black">Description</label>
-                                {{ form.description }}
-                            </div>
-                            <div class="fieldWrapper">
-
-                                <label style="color: black">Picture URL</label>
-                                {{ form.pic }}
-                            </div>
-                            <div class="fieldWrapper">
-                                <label style="color: black;" >Side</label>
-                                {{ form.side }}
-                            </div>}
-                            <div class="fieldWrapper">
-                                <label style="color: black;">Date</label>
-                                {{ form.event_date }}
-                            </div>
-                            }
-                            <input type="submit" value="Submit"/>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Close
                         </button>
                     </div>
@@ -112,7 +89,7 @@ Timeline
                                             <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">
                                                 Close
                                             </button>
                                         </div>
@@ -160,7 +137,7 @@ Timeline
                                                 <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">
                                                     Close
                                                 </button>
                                             </div>

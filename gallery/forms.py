@@ -5,5 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class GalleryForm(ModelForm):
     class Meta:
-        model = Photo
-        fields = ('url',)
+        model=Photo
+        fields = {'url',}
+        labels = {
+            'url': _("Link to Picture")
+        }

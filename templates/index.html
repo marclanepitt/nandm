@@ -12,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <title>Naomi and Marc</title>
 
@@ -62,9 +65,16 @@
                     <li>
                         <a class="page-scroll" href="/gallery">Photos</a>
                     </li>
+
                     <li>
                         <a class="page-scroll" href="#contact">Log In</a>
                     </li>
+                    <li>
+                        <button class="btn btn-success" data-toggle="modal"
+                                data-target="#myModal{{ event.id }}" style="margin-top: 8px;">Memory of the Day
+                        </button>
+                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -78,6 +88,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
+
+
+
                         <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/15541122_1175056415864073_7802411058570350589_n.jpg?oh=414aafc7228ae877c5f5c18eaa319ff7&oe=58DA14C3">
                         <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14702220_1109301929106189_1459557458447610627_n.jpg?oh=6a63e3301179390d09a44c32ebbe071c&oe=58ECEAE8">
                         <img class="mySlides" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14716089_1102729489763433_6757859095804838454_n.jpg?oh=5cd1fdb561e4a4fef6d1739b78523946&oe=58D91602">
@@ -100,6 +113,30 @@
                              src=https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14040051_1054932657876450_4377473424685905211_n.jpg?oh=0fb995f80f160070af586d5045de524a&oe=58E79B0E>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal{{ event.id }}" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal"></button>
+                        <h4 style="text-align: center;" class="modal-title">{{ event.title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <img style="max-height: 320px; max-width: 320px;" class="img-responsive" src="{{ event.pic }}">
+                        <p style="text-align: center; padding-top: 10px;">{{ event.description }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </header>
